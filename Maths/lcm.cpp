@@ -14,7 +14,7 @@ return GCD(b,a%b);
 }
 
 int LCM(int a,int b){
-	return (a*b)/GCD(a,b);
+	return (a*b)/GCD(a,b); // lcm(a,b)*gcd(a,b)==a*b
 }
 
 int main(){
