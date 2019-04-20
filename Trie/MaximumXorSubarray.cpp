@@ -83,10 +83,11 @@ int main() {
 		curr_xor = curr_xor ^ curr_element;
 		if(flag==0){
 			insert(head,arr[0]);
+            flag++;
 		}
 
 		curr_max=find_MaxXorSubarray(head,curr_xor)	;
-		max_xor=max(curr_xor,curr_max);
+		max_xor=max(curr_xor,max(max_xor,curr_max));
 		insert(head,curr_xor);
 
 
