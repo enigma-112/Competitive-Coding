@@ -6,7 +6,7 @@ public:
 	trieNode * left;
 	trieNode * right;
 };
-
+// Inserting integers in trie
 void insert(int n,trieNode * head){
 
 	trieNode * currNode = head;
