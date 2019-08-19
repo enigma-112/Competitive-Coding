@@ -11,38 +11,34 @@ class triplet {
 
 
 
-bool compare(triplet x,triplet y){
+bool operator<(triplet x,triplet y){
     
-    if(x.data<=y.data){
-        return true;
-    }
-    else{
-        return false;
-    }
+   return  x.data>y.data ; 
 }
 
 
 vector<int> mergeKSortedArrays(vector<vector<int>*> input){
 
-  priority_queue<triplet,vector<triplet>, bool (*)(triplet, triplet)> pq1(compare) ;
+  priority_queue<triplet> pq1 ;
 
   int size = input.size();
 
   triplet t1;
-  for(int i=0;i<=input.size()-1;i++){
+  for(int i=0;i<=size-1;i++){
 
             vector<int> * v = input[i];
             t1.data = v->at(0);
             t1.arr = i;
             t1.index =0;
-            cout<<t1.data<<endl;
+         
+            pq1.push(t1);
   }
 
  vector<int> output;
   while(pq1.empty()==false){
 
     triplet x = pq1.top();
-    cout<<x.data<<endl;
+   
       output.push_back(x.data);
     pq1.pop();
 
@@ -63,6 +59,7 @@ return output;
 
 }
 
+// Main Function
 
 int main() {
     
