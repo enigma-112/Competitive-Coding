@@ -110,7 +110,7 @@ int main(){
 
 		cin>>s>>e>>w;
 		g1[s].push_back(make_pair(e,w));
-		g1[e].push_back(make_pair(s,w));
+		g1[e].push_back(make_pair(s,w)); // to make it directed , we can comment this line
 	}
 
 	dijkstra(g1,n,0);
