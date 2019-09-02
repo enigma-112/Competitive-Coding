@@ -3,6 +3,7 @@
 
 #include<bits/stdc++.h>
 using namespace std;
+typedef pair<int,int> pii;
 
 class dSet{  // this is class of a disjoint set , it is used to detect cycle in undirected and connected graph
 
@@ -77,11 +78,14 @@ void kruskal(edge * input,int n,int e){
 	dSet   disjoint(n);
 
 	sort(input,input+e,compare);
+	vector<pii> v1;
 
 	int mincost=0;
 	for(int i=0;i<=e-1;i++){
 		int x = input[i].s;
 		int y = input[i].d;
+
+		
 
 		int xroot = disjoint.find1(n,x);
 		int yroot = disjoint.find1(n,y);
@@ -90,12 +94,18 @@ void kruskal(edge * input,int n,int e){
 			continue;
 		}
 		else{
+			v1.push_back(make_pair(x,y));
 			mincost+= input[i].w;
 			disjoint.union1(n,x,y);
 
 		}
 	}
-	cout<<mincost<<endl;
+	cout<<endl<<endl<<mincost<<endl;
+
+	cout<<endl<<"Edges in MST are :"<<endl ;
+	for(pii x : v1){
+		cout<<x.first<<" --- "<<x.second<<endl;
+	}
 }
 int main(){
 
