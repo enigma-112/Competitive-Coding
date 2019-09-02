@@ -1,6 +1,8 @@
 // Kruskal's algorithm 
 // Cycle detection is done with the help of disjoint set -> union find algorithm with optimizations i.e using union by rank and path-compression
 
+#include<bits/stdc++.h>
+using namespace std;
 
 class dSet{  // this is class of a disjoint set , it is used to detect cycle in undirected and connected graph
 
@@ -13,7 +15,7 @@ class dSet{  // this is class of a disjoint set , it is used to detect cycle in 
 			n = size;
 			parent = new int[size];
 			rank = new int[size];
-			for(int i=0;<=size-1;i++){
+			for(int i=0;i<=size-1;i++){
 				parent[i] = i;
 				rank[i] = 0;
 			}
@@ -21,29 +23,29 @@ class dSet{  // this is class of a disjoint set , it is used to detect cycle in 
 		}
 
 
-	int find( int n ,int i){  // find by path compression
+	int find1( int n ,int i){  // find by path compression
 
 			if(parent[i]==i){
 				return i;
 			}
 
-			parent[i] = find(n,parent[i]);
+			parent[i] = find1(n,parent[i]);
 
 			return parent[i];
 
 	}
 
-	void union(int n, int i,int j){	// union by rank
+	void union1(int n, int i,int j){	// union by rank
 
-			int iroot = find(parent,n,i);
-			int jroot = find(parent,n,j);
+			int iroot = find1(n,i);
+			int jroot = find1(n,j);
 
 			if(iroot == jroot){
 				return;
 			}
 
 			if(rank[iroot]<rank[jroot]){
-				parent[iroot]==jroot;
+				parent[iroot]=jroot;
 			}
 			else if(rank[jroot]<rank[iroot]){
 				parent[jroot] = iroot;
@@ -72,7 +74,7 @@ bool compare(edge & x , edge & y){
 }
 void kruskal(edge * input,int n,int e){
 
-	dSet  * disjoint = new dSet(n);
+	dSet   disjoint(n);
 
 	sort(input,input+e,compare);
 
@@ -81,18 +83,19 @@ void kruskal(edge * input,int n,int e){
 		int x = input[i].s;
 		int y = input[i].d;
 
-		int xroot = disjoint->find(n,i);
-		int yroot = disjoint->find(n,j);
+		int xroot = disjoint.find1(n,x);
+		int yroot = disjoint.find1(n,y);
 
 		if(xroot==yroot){
 			continue;
 		}
 		else{
 			mincost+= input[i].w;
-			disjoint->union(n,i,j);
+			disjoint.union1(n,x,y);
 
 		}
 	}
+	cout<<mincost<<endl;
 }
 int main(){
 
@@ -114,5 +117,5 @@ int main(){
 	kruskal(input,n,e);
 
 
-	cin>>n>>e;
+	
 }
