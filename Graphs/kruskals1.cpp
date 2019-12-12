@@ -1,4 +1,4 @@
-// Kruskal's algorithm 
+// Kruskal's algorithm  ---> Time Complexity : O(E.LogE + E.logV)
 // Cycle detection is done with the help of disjoint set -> union find algorithm with optimizations i.e using union by rank and path-compression
 
 #include<bits/stdc++.h>
@@ -125,7 +125,5 @@ int main(){
 	}
 
 	kruskal(input,n,e);
-
-
 	
 }
